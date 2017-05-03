@@ -2,9 +2,9 @@ FROM ubuntu:16.04
 
 # update system
 RUN apt-get update
-RUN apt-get upgrade
+RUN apt-get -y upgrade
 # install deps
-RUN apt-get install -y curl make gcc g++ python binutils-gold gnupg
+RUN apt install -y curl make gcc g++ python binutils-gold gnupg
 
 # configure key server for SHASUMS256 test
 RUN gpg --keyserver ha.pool.sks-keyservers.net --recv-keys \
