@@ -2,7 +2,7 @@ FROM ubuntu:14.04
 
 # update system
 RUN apt-get update
-RUN apt-get upgrade
+RUN apt-get -y upgrade
 # install deps
 RUN apt-get install -y curl make gcc g++ python binutils-gold gnupg
 
@@ -17,7 +17,7 @@ B9AE9905FFD7803F25714661B63B535A4C206CA9 \
 56730D5401028683275BD23C23EFEFE93C4CFFFE
 
 # configure node build
-ENV VERSION="v4.8.3"
+ENV VERSION="v6.10.3"
 ENV CONFIG_FLAGS="--fully-static"
 ENV RM_DIRS=/usr/include
 
