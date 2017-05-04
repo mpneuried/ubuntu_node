@@ -18,8 +18,6 @@ B9AE9905FFD7803F25714661B63B535A4C206CA9 \
 
 # configure node build
 ENV VERSION="v6.10.3"
-ENV CONFIG_FLAGS="--fully-static"
-ENV RM_DIRS=/usr/include
 
 WORKDIR /home
 
@@ -30,15 +28,9 @@ RUN curl -sSL https://nodejs.org/dist/${VERSION}/SHASUMS256.txt.asc | gpg --batc
 # install node
 RUN tar -xzf node-${VERSION}.tar.gz
 WORKDIR /home/node-${VERSION}
-RUN ./configure --prefix=/usr ${CONFIG_FLAGS}
-RUN make -j$(getconf _NPROCESSORS_ONLN)
+RUN ./configure
+RUN make
 RUN make install
-
-# remove build modules and files
-RUN apt-get remove -y curl make gcc g++ python binutils-gold
-RUN rm -rf ${RM_DIRS} /home/node-${VERSION}* /usr/share/man /tmp/* /var/cache/apk/* \
-	/root/.npm /root/.node-gyp /root/.gnupg /usr/lib/node_modules/npm/man \
-	/usr/lib/node_modules/npm/doc /usr/lib/node_modules/npm/html /usr/lib/node_modules/npm/scripts
 
 RUN node -v
 RUN npm -v
