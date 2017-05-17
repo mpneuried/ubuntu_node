@@ -7,7 +7,7 @@ RUN apt-get -y upgrade
 RUN apt install -y curl make gcc g++ python binutils-gold gnupg
 
 # configure key server for SHASUMS256 test
-RUN gpg --keyserver ha.pool.sks-keyservers.net --recv-keys \
+RUN gpg --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys \
 94AE36675C464D64BAFA68DD7434390BDBE9B9C5 \
 FD3A5288F042B6850C66B31F09FE44734EB7990E \
 71DCFD284A79C3B38668286BC97EC7A07EDE3FC1 \
